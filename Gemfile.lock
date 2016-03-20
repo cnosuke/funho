@@ -51,6 +51,7 @@ GEM
     coderay (1.1.1)
     concurrent-ruby (1.0.1)
     debug_inspector (0.0.2)
+    denv (0.2.4)
     diff-lcs (1.2.5)
     erubis (2.7.0)
     execjs (2.6.0)
@@ -126,6 +127,8 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rake (11.1.2)
+    ridgepole (0.6.4)
+      activerecord (~> 4.2.1)
     rspec-core (3.4.4)
       rspec-support (~> 3.4.0)
     rspec-expectations (3.4.0)
@@ -187,6 +190,7 @@ PLATFORMS
 
 DEPENDENCIES
   capybara
+  denv
   factory_girl
   hamlit
   jbuilder
@@ -196,6 +200,7 @@ DEPENDENCIES
   pry-doc
   pry-rails
   rails (= 4.2.6)
+  ridgepole
   rspec-rails
   sass-rails
   silencer

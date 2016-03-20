@@ -18,6 +18,8 @@ gem 'uglifier'
 gem 'jbuilder'
 
 gem 'hamlit'
+gem 'denv'
+gem 'ridgepole'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
