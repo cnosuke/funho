@@ -6,7 +6,8 @@ create_table "pomodoros", force: :cascade do |t|
   t.datetime "updated_at",            null: false
 end
 
-add_index "pomodoros", ["task_id", "started_at"]
+add_index "pomodoros", ["task_id", "started_at", "finished_at"]
+
 create_table "tasks", force: :cascade do |t|
   t.string   "name",        limit: 256,   default: "", null: false
   t.text     "description", limit: 65535,              null: false
