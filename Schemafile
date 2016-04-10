@@ -2,6 +2,8 @@ create_table "pomodoros", force: :cascade do |t|
   t.integer  "task_id",     limit: 4
   t.datetime "started_at"
   t.datetime "finished_at"
+  t.datetime "suspended_at"
+  t.integer  "suspend_duration", default: 0, null: false
   t.datetime "created_at",            null: false
   t.datetime "updated_at",            null: false
 end
