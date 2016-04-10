@@ -2,7 +2,10 @@ Rails.application.routes.draw do
   root 'pages#index'
 
   resources :tasks
-  resources :pomodoros
+  resources :pomodoros do
+    post :stop
+    post :start
+  end
   resources :timelines
 
   # The priority is based upon order of creation: first created -> highest priority.
