@@ -1,0 +1,54 @@
+%h2
+  Pomodoro ##{@pomodoro.id}
+  - if @pomodoro.running?
+    🏃🏻
+
+.panel.panel-primary
+  .panel-body
+    .row.font120.bold
+      .col-md-2
+        Start:
+        %br
+        = f_time @pomodoro.started_at
+      .col-md-2
+        Suspend:
+        %br
+        = f_time(@pomodoro.suspended_at) || 'none'
+      .col-md-4
+        - if @pomodoro.finished?
+          Finish:
+          %br
+          = f_time(@pomodoro.finished_at)
+        - else
+          #pomodoro_remainning.font200
+            = pmdr_time(@pomodoro.remain_time)
+      .col-md-4
+        - if @pomodoro.startable?
+          = link_to 'Start',
+                    pomodoro_start_path(@pomodoro),
+                    method: :post, id: "main_button",
+                    class: 'btn btn-primary btn-lg btn-block'
+        - elsif @pomodoro.stoppable?
+          = link_to 'Stop',
+                    pomodoro_stop_path(@pomodoro),
+                    method: :post, id: "main_button",
+                    class: 'btn btn-warning btn-lg btn-block'
+
+.panel.panel-default
+  .panel-heading
+    .font150
+      = link_to @task.name, @task
+  .panel-body
+    %p
+      = @task.description
+    = render 'shared/pomodoro_list', pomodoros: @task.pomodoros
+
+- status_json = { pomodoro_id: @pomodoro.id,
+                  running: @pomodoro.running?,
+                  remainning: @pomodoro.remain_time,
+                  csrf_token: form_authenticity_token }.to_json
+:javascript
+  (function(){
+    var pomodoro = new Pomodoro(#{status_json});
+    pomodoro.run();
+  })()

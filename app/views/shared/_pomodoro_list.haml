@@ -1,0 +1,20 @@
+%table.table.table-condensed
+  %tr
+    %th #
+    %th Start
+    %th Finish
+    %th Suspend
+    %th Duration
+    %th Remain
+  - pomodoros.each do |pomodoro|
+    %tr
+      %td
+        = link_to pomodoro do
+          = pomodoro.id
+          - if pomodoro.running?
+            🏃🏻
+      %td= f_time pomodoro.started_at
+      %td= f_time pomodoro.finished_at
+      %td= f_time pomodoro.suspended_at
+      %td= pmdr_time pomodoro.duration_time
+      %td= pmdr_time pomodoro.remain_time
