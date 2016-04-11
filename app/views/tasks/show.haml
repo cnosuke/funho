@@ -1,14 +1,24 @@
-%p#notice
-  = notice
-
-%p
-  %strong Name:
+%h2
   = @task.name
+  %small
 
-%p
-  %strong Description:
-  = @task.description
 
-= link_to 'Edit', edit_task_path(@task)
-|
-= link_to 'Back', tasks_path
+
+.panel.panel-default
+  %p.panel-body
+    = @task.description
+  .panel-footer
+    .tools.text-right
+      = link_to 'Edit', edit_task_path(@task)
+      |
+      = link_to 'Destroy', @task, method: :delete, data: { confirm: 'Are you sure?' }
+
+.row
+  .col-md-12
+    %h4
+      Pomodoros
+      = link_to 'Add Pomodoro', pomodoros_path(task_id: @task),
+              method: :post, class: 'btn btn-success'
+.row
+  .col-md-12
+    = render 'shared/pomodoro_list', pomodoros: @pomodoros

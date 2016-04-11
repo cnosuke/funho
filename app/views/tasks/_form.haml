@@ -1,7 +1,7 @@
 = form_for(@task) do |f|
   - if @task.errors.any?
-    #error_explanation
-      %h2
+    .alert.alert-danger
+      %h4
         = pluralize(@task.errors.count, "error")
         prohibited this note from being saved:
 
@@ -9,14 +9,9 @@
         - @task.errors.full_messages.each do |message|
           %li= message
 
-  .field
-    = f.label :name
-    %br
-    = f.text_field :name
-  .field
-    = f.label :description
-    %br
-    = f.text_area :description
+  .form-group
+    = f.text_field :name, placeholder: 'Name', class: 'form-control'
+  .form-group
+    = f.text_area :description, placeholder: 'Description', class: 'form-control', rows: 4
 
-  .actions
-    = f.submit
+  = f.submit class: 'btn btn-primary'
