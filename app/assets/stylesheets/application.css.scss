@@ -13,3 +13,46 @@
  *= require_tree .
  *= require_self
  */
+
+ html {
+  min-height:100%;
+  position: relative;;
+ }
+
+.container {
+  header {
+    h1 {
+      font-size: 150%;
+    }
+  }
+
+  .font100 {
+    font-size: 100%;
+  }
+
+  .font120 {
+    font-size: 120%;
+  }
+
+  .font150 {
+    font-size: 150%;
+  }
+
+  .font200 {
+    font-size: 200%;
+  }
+
+  .bold {
+    font-weight: bolder;
+  }
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  p.copyright {
+    text-align: center;
+    color: #ccc;
+  }
+}
