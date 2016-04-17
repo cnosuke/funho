@@ -131,6 +131,8 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rake (11.1.2)
+    revision_plate (0.1.2)
+      rack
     ridgepole (0.6.4)
       activerecord (~> 4.2.1)
     rspec-core (3.4.4)
@@ -205,6 +207,7 @@ DEPENDENCIES
   pry-doc
   pry-rails
   rails (= 4.2.6)
+  revision_plate
   ridgepole
   rspec-rails
   sass-rails

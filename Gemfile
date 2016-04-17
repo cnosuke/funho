@@ -20,6 +20,7 @@ gem 'jbuilder'
 gem 'hamlit'
 gem 'denv'
 gem 'ridgepole'
+gem 'revision_plate'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get '/hello/revision' => RevisionPlate::App.new
   root 'pages#index'
 
   resources :tasks
