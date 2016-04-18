@@ -16,7 +16,6 @@ ADD lib /app/lib
 COPY config.ru /app/
 COPY Rakefile /app/
 COPY Schemafile /app/
-COPY dot_env /app/.env
 COPY .git/logs/HEAD /GIT_LOGS
 RUN tail -1 /GIT_LOGS |awk '{print $2}' > /app/REVISION
 

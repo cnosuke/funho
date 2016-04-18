@@ -8,7 +8,7 @@ working_directory "#{app_path}/current"
 pid               "#{shared_path}/tmp/pids/unicorn.pid"
 
 # listen
-listen "/tmp/unicorn_funho.sock", :backlog => 64
+listen ENV['UNICORN_UNIX_SOCKET'], :backlog => 64
 
 # logging
 stderr_path "#{shared_path}/log/unicorn.stderr.log"
