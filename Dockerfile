@@ -8,6 +8,7 @@ COPY Gemfile /app/Gemfile
 COPY Gemfile.lock /app/Gemfile.lock
 RUN cd /app && bundle install --without development test --deployment --quiet
 
+WORKDIR /app
 ADD app /app/app
 ADD bin /app/bin
 ADD config /app/config
