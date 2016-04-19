@@ -23,12 +23,17 @@ class Pomodoro {
   finish_pomodoro() {
     this.notice("💮💮 Pomodoro finished 💮💮");
     this.write_remainning("💮FINISH💮");
-    this.hide_stop_button();
+    this.play_finish_sound();
     this.sending_stop();
+    this.hide_stop_button();
   }
 
   notice(message) {
     new Notification(message)
+  }
+
+  play_finish_sound(){
+    document.getElementById("finish_sound").play();
   }
 
   time_str() {
