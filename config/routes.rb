@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     post :start
   end
 
+  resources :timelines
+
   namespace :api do
     resources :timelines
   end

@@ -1,5 +1,5 @@
 class Pomodoro < ActiveRecord::Base
-  DEFAULT_DURATION = 2.minutes
+  DEFAULT_DURATION = 25.minutes
 
   belongs_to :task
 
@@ -25,7 +25,6 @@ class Pomodoro < ActiveRecord::Base
       update_attributes(started_at: time)
     end
   end
-
 
   def stop!(time = Time.now)
     return false unless stoppable?

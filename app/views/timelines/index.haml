@@ -1,0 +1,11 @@
+%ul.list-group
+  - @timelines.each do |timeline|
+    %li.list-group-item.row
+      .timeline_header
+        .timeline_kind.col-md-1
+          = timeline.kind
+        .timeline_date.col-md-1
+          = f_time timeline.created_at
+
+      .timeline_comment.col-md-10
+        = timeline.comment
