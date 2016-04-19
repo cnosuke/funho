@@ -2,24 +2,24 @@ require 'denv'
 Denv.load
 
 # paths
-app_path = ENV['APP_PATH']
-shared_path = "#{app_path}/shared"
-working_directory "#{app_path}/current"
-pid               "#{shared_path}/tmp/pids/unicorn.pid"
+app_name = ENV['APP_NAME'] || "app#{ENV['HOSTNAME']}"
+app_path = ENV['APP_PATH'] || '/app'
+working_directory app_path
+pid               "/tmp/#{app_name}_#{ENV['HOSTNAME']}.pid"
 
 # listen
 listen ENV['UNICORN_UNIX_SOCKET'], :backlog => 64
 
 # logging
-stderr_path "#{shared_path}/log/unicorn.stderr.log"
-stdout_path "#{shared_path}/log/unicorn.stdout.log"
+stderr_path "#{app_path}/log/unicorn.stderr.log"
+stdout_path "#{app_path}/log/unicorn.stdout.log"
 
 # workers
 worker_processes 2
 
 # use correct Gemfile on restarts
 before_exec do |server|
-  ENV['BUNDLE_GEMFILE'] = "#{app_path}/current/Gemfile"
+  ENV['BUNDLE_GEMFILE'] = "#{app_path}/Gemfile"
 end
 
 # preload
