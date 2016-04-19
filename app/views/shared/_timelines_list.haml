@@ -1,0 +1,14 @@
+%ul.list-group
+  - timelines.each do |timeline|
+    %li.list-group-item.row
+      .timeline_header
+        .timeline_kind.col-md-1
+          - kinds = { tweet: 'info', interrupt: 'danger', keep: 'success' }
+          - kind_label = kinds[timeline.kind&.to_sym] || 'default'
+          .label{class: "label-#{kind_label}"}
+            = timeline.kind
+        .timeline_date.col-md-1
+          = f_time timeline.created_at
+
+      .timeline_comment.col-md-10
+        = auto_link(timeline.comment)
