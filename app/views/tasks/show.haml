@@ -5,8 +5,8 @@
 
 
 .panel.panel-default
-  %p.panel-body
-    = @task.description
+  .panel-body
+    = auto_link(simple_format(@task.description))
   .panel-footer
     .tools.text-right
       = link_to 'Edit', edit_task_path(@task)

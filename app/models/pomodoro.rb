@@ -6,7 +6,7 @@ class Pomodoro < ActiveRecord::Base
   scope :latest, -> { order(:started_at) }
 
   def timelines
-    ft = (finished_at.presence || (started_at + suspend_time.seconds + DEFAULT_DURATION))
+    ft = (finished_at.presence || (started_at + suspend_duration.seconds + DEFAULT_DURATION))
     Timeline.where(created_at: started_at..ft)
   end
 

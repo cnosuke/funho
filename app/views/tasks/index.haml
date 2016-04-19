@@ -18,4 +18,4 @@
           = link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default'
 
       .task_description
-        = task.description
+        = auto_link(simple_format(task.description))
