@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :authenticate
 
-  USERS = { 'cnosuke' => 'funhopw0123' }.freeze
+  USERS = { ENV['DIGEST_USER'] => ENV['DIGEST_PASSWORD'] }.freeze
 
   def now
     @now ||= Time.now

@@ -3,11 +3,7 @@ class ApiController < ActionController::Base
 
   before_action :authenticate
 
-  API_TOKENS = [
-    "V6n7CJnAWP87Cwbuvd7jIfuwjTBgDAmB3DAfuQf5dHMOtYDe3UUhN42z4msauLbT",
-    "rtMzwdUIqoRm8JIpjxmSWmpYOKlD3Pz2CDpdn4i9lDe9tIfHfqaPrOJTXnMLVFam",
-    "bWycMpLVjY2s39VxJZQkct1M0CWSq7vqh3OFUZ8DCE46wj6KYJIK70OftiUESN4S",
-  ].freeze
+  API_TOKENS = ENV['API_TOKENS'].split(',').freeze
 
   def now
     @now ||= Time.now
