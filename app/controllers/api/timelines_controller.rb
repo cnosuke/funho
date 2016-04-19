@@ -11,7 +11,6 @@ class Api::TimelinesController < ApiController
     end
   end
 
-
   private
 
   def timeline_params

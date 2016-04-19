@@ -3,7 +3,7 @@ class ApiController < ActionController::Base
 
   before_action :authenticate
 
-  API_TOKENS = ENV['API_TOKENS'].split(',').freeze
+  API_TOKENS = (ENV['API_TOKENS'] || '').split(',').freeze
 
   def now
     @now ||= Time.now
