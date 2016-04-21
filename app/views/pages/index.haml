@@ -1,2 +1,12 @@
-%h1
-  INDEX PAGE
+- if current_user
+  = current_user.name
+  = link_to 'Logout', logout_path
+
+  = link_to 'Tasks', tasks_path
+  = link_to 'Timelines', timelines_path
+
+  = current_user.api_token
+
+
+- else
+  = link_to 'Login', '/auth/google_oauth2'

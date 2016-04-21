@@ -2,7 +2,7 @@ class PomodorosController < ApplicationController
   # GET /pomodoros
   # GET /pomodoros.json
   def index
-    @pomodoros = Pomodoro.all
+    @pomodoros = current_user.pomodoros
   end
 
   # GET /pomodoros/1
@@ -50,7 +50,7 @@ class PomodorosController < ApplicationController
   # POST /pomodoros.json
   def create
     @task = find_task
-    @pomodoro = Pomodoro.new(task: @task, started_at: now)
+    @pomodoro = Pomodoro.new(task: @task, started_at: now, user: current_user)
 
     if @pomodoro.save
       redirect_to @pomodoro, notice: 'Start pomodoro'
@@ -89,10 +89,12 @@ class PomodorosController < ApplicationController
 
   private
   def find_pomodoro
-    Pomodoro.find_by_id!(params[:id] || params[:pomodoro_id])
+    current_user.pomodoros
+      .find_by_id!(params[:id] || params[:pomodoro_id])
   end
 
   def find_task
-    Task.find_by_id!(params[:task_id])
+    current_user.tasks
+      .find_by_id!(params[:task_id])
   end
 end

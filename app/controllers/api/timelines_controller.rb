@@ -1,6 +1,6 @@
 class Api::TimelinesController < ApiController
   def create
-    @timeline = Timeline.new(timeline_params)
+    @timeline = current_user.timelines.new(timeline_params)
 
     respond_to do |f|
       if @timeline.save

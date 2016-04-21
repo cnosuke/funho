@@ -3,8 +3,6 @@ class ApiController < ActionController::Base
 
   before_action :authenticate
 
-  API_TOKENS = (ENV['API_TOKENS'] || '').split(',').freeze
-
   def now
     @now ||= Time.now
   end
@@ -12,11 +10,14 @@ class ApiController < ActionController::Base
   private
 
   def authenticate
-    return unless Rails.env.production?
-    authenticate_api
+    unless current_user.present?
+      head :forbidden
+    end
   end
 
-  def authenticate_api
-    API_TOKENS.include?(params['api_token'])
+  def current_user
+    @current_user ||= User.find_by_api_token(params[:api_token])
   end
+
+  helper_method :current_user
 end

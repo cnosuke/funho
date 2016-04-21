@@ -4,8 +4,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :authenticate
 
-  USERS = { ENV['DIGEST_USER'] => ENV['DIGEST_PASSWORD'] }.freeze
-
   def now
     @now ||= Time.now
   end
@@ -13,13 +11,12 @@ class ApplicationController < ActionController::Base
   private
 
   def authenticate
-    return unless Rails.env.production?
-    authenticate_pc
+    redirect_to root_path unless current_user.present?
   end
 
-  def authenticate_pc
-    authenticate_or_request_with_http_digest do |user|
-      USERS[user]
-    end
+  def current_user
+    @current_user ||= User.find_by_id(session[:user_id])
   end
+
+  helper_method :current_user
 end

@@ -1,5 +1,6 @@
 class PagesController < ApplicationController
+  skip_before_action :authenticate, only: %i(index)
+
   def index
-    redirect_to tasks_path
   end
 end
