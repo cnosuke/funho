@@ -5,6 +5,9 @@ class Timeline < ActiveRecord::Base
   KIND_OTHER = :other
   KINDS = [KIND_TWEET, KIND_INTERRUPT, KIND_KEEP, KIND_OTHER]
 
+  belongs_to :user
+
+  scope :owner, -> (u) { where(user_id: u.id) }
   scope :latest, -> { order(created_at: :desc) }
   scope :pomodoro_by, -> (pmdr) {
     end_at = (pmdr.started_at + pmdr.duration_time + pmdr.suspend_duration.seconds)

@@ -1,4 +1,5 @@
 create_table "pomodoros", force: :cascade do |t|
+  t.integer  "user_id",          limit: 4
   t.integer  "task_id",          limit: 4
   t.datetime "started_at"
   t.datetime "finished_at"
@@ -8,9 +9,10 @@ create_table "pomodoros", force: :cascade do |t|
   t.datetime "updated_at",                             null: false
 end
 
-add_index "pomodoros", ["task_id", "started_at", "finished_at"]
+add_index "pomodoros", ["user_id", "task_id", "started_at"]
 
 create_table "tasks", force: :cascade do |t|
+  t.integer  "user_id",          limit: 4
   t.string   "name",        limit: 256,   default: "", null: false
   t.text     "description", limit: 65535,              null: false
   t.datetime "started_at"
@@ -19,13 +21,30 @@ create_table "tasks", force: :cascade do |t|
   t.datetime "updated_at",                             null: false
 end
 
-add_index "tasks", ["finished_at", "started_at"]
+add_index "tasks", ["user_id", "finished_at", "started_at"]
 
 create_table "timelines", force: :cascade do |t|
+  t.integer  "user_id",          limit: 4
   t.string   "kind",       limit: 64,    default: "", null: false
   t.text     "comment",    limit: 65535
   t.datetime "created_at",                            null: false
   t.datetime "updated_at",                            null: false
 end
 
-add_index "timelines", ["kind", "created_at"]
+add_index "timelines", ["user_id", "kind", "created_at"]
+
+create_table "users", force: :cascade do |t|
+  t.string   "name",        limit: 64,   default: "", null: false
+  t.string   "email",       limit: 128,               null: false
+  t.string   "provider",    limit: 32,                null: false
+  t.string   "uid",         limit: 64,                null: false
+  t.string   "image",       limit: 128,               null: false
+  t.string   "token",       limit: 128,               null: false
+  t.string   "api_token",    limit: 36,                null: false
+  t.datetime "token_expires_at",                       null: false
+  t.datetime "created_at",                             null: false
+  t.datetime "updated_at",                             null: false
+end
+
+add_index "users", ["provider", "uid"], unique: true
+add_index "users", ["api_token"], unique: true

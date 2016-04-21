@@ -2,8 +2,10 @@ class Pomodoro < ActiveRecord::Base
   DEFAULT_DURATION = 25.minutes
 
   belongs_to :task
+  belongs_to :user
 
   scope :latest, -> { order(:started_at) }
+  scope :owner, -> (u) { where(user_id: u.id) }
 
   def timelines
     ft = (finished_at.presence || (started_at + suspend_duration.seconds + DEFAULT_DURATION))
