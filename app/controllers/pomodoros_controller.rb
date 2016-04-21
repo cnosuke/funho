@@ -9,13 +9,13 @@ class PomodorosController < ApplicationController
   # GET /pomodoros/1.json
   def show
     @pomodoro = find_pomodoro
-    @timelines = @pomodoro.timelines
+    @timelines = @pomodoro.timelines.latest
     @task = @pomodoro.task
   end
 
   def timelines
     @pomodoro = find_pomodoro
-    @timelines = @pomodoro.timelines
+    @timelines = @pomodoro.timelines.latest
 
     respond_to do |f|
       f.json { render json: { timelines: @timelines } }
