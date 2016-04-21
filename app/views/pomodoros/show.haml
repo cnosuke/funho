@@ -44,7 +44,7 @@
       = link_to @task.name, @task
   .panel-body
     %p
-      = @task.description
+      = auto_link(simple_format(@task.description))
     = render 'shared/pomodoro_list', pomodoros: @task.pomodoros
 
 - status_json = { pomodoro_id: @pomodoro.id,
