@@ -8,11 +8,10 @@ working_directory app_path
 pid               "/tmp/#{app_name}_#{ENV['HOSTNAME']}.pid"
 
 # listen
-listen ENV['UNICORN_UNIX_SOCKET'], :backlog => 64
+listen ENV['UNICORN_UNIX_SOCKET'] || '/tmp/app.sock'
 
 # logging
-stderr_path "#{app_path}/log/unicorn.stderr.log"
-stdout_path "#{app_path}/log/unicorn.stdout.log"
+logger Logger.new($stdout)
 
 # workers
 worker_processes 2

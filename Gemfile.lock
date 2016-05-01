@@ -59,6 +59,8 @@ GEM
       activesupport (>= 3.0.0)
     faraday (0.9.2)
       multipart-post (>= 1.2, < 3)
+    foreman (0.78.0)
+      thor (~> 0.19.1)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     hamlit (2.2.3)
@@ -77,7 +79,7 @@ GEM
     json (1.8.3)
     jwt (1.5.1)
     kgio (2.10.0)
-    libv8 (3.16.14.13)
+    libv8 (3.16.14.15)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.4)
@@ -234,6 +236,7 @@ DEPENDENCIES
   capybara
   denv
   factory_girl
+  foreman
   hamlit
   jbuilder
   jquery-rails

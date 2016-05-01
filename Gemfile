@@ -17,6 +17,7 @@ gem 'jquery-rails'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder'
 
+gem 'foreman'
 gem 'hamlit'
 gem 'denv'
 gem 'ridgepole'
