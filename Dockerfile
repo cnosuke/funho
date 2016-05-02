@@ -28,7 +28,7 @@ RUN bundle exec rake assets:precompile
 ADD docker/Procfile /app/
 
 EXPOSE 80
-CMD ["foreman", "start"]
+CMD ["bundle", "exec", "foreman", "start"]
 
 # How to DB migrate
 # docker-compose run -e RAILS_ENV=production --rm funho bundle exec rake ridgepole:apply
