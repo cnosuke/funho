@@ -7,6 +7,10 @@ dependencies:
     - docker info
     - docker build -t cnosuke/funho .
 
+database:
+  override:
+    - echo 'Do nothing'
+
 test:
   override:
     - docker run -d -p 8080:80 cnosuke/funho; sleep 10
