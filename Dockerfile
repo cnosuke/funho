@@ -5,10 +5,6 @@ RUN apt-get update
 RUN apt-get install -y nginx mysql-client libmysqlclient-dev
 
 # Add nginx configs and tricking logger to STDIO
-WORKDIR /
-
-# RUN mkdir -p /etc/nginx/sites-enabled/
-# RUN touch /etc/nginx/sites-enabled/nginx.conf
 COPY docker/nginx.conf /etc/nginx/sites-enabled/
 RUN rm /etc/nginx/sites-enabled/default
 RUN ln -sf /dev/stdout /var/log/nginx/access.log
