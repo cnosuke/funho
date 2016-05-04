@@ -9,13 +9,13 @@ WORKDIR /
 
 # RUN mkdir -p /etc/nginx/sites-enabled/
 # RUN touch /etc/nginx/sites-enabled/nginx.conf
-COPY docker/nginx.conf /etc/nginx/sites-enabled
+COPY docker/nginx.conf /etc/nginx/sites-enabled/
 RUN rm /etc/nginx/sites-enabled/default
 RUN ln -sf /dev/stdout /var/log/nginx/access.log
 RUN ln -sf /dev/stderr /var/log/nginx/error.log
 
 RUN mkdir -p /app /data /app/log /app/tmp
-COPY Gemfile Gemfile.lock /app
+COPY Gemfile Gemfile.lock /app/
 RUN cd /app && bundle install --without development test --deployment --quiet
 
 WORKDIR /app
@@ -28,7 +28,7 @@ RUN touch /app/.env
 
 RUN bundle exec rake assets:precompile
 
-COPY docker/Procfile /app
+COPY docker/Procfile /app/
 
 EXPOSE 80
 CMD ["bundle", "exec", "foreman", "start"]
