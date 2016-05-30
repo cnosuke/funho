@@ -1,12 +1,25 @@
 - if current_user
-  = current_user.name
-  = link_to 'Logout', logout_path
+  .panel.panel-primary
+    .panel-body
+      %ul.list-group
+        - @tasks.each do |task|
+          %li.list-group-item
+            %p.task_name.font150
+              = link_to task.name, task
+              = link_to 'Add Pomodoro', pomodoros_path(task_id: task),
+              method: :post, class: 'btn btn-success pull-right'
 
-  = link_to 'Tasks', tasks_path
-  = link_to 'Timelines', timelines_path
 
-  = current_user.api_token
+  %ul.list-group
+    %li
+      = link_to 'Logout', logout_path
+    %li
+      = link_to 'Tasks', tasks_path
+    %li
+      = link_to 'Timelines', timelines_path
 
+  %h5 API Token
+  %p= current_user.api_token
 
 - else
   = link_to 'Login', '/auth/google_oauth2'

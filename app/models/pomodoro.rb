@@ -6,6 +6,8 @@ class Pomodoro < ActiveRecord::Base
 
   scope :latest, -> { order(:started_at) }
   scope :owner, -> (u) { where(user_id: u.id) }
+  scope :recent, -> (before) { between(before, Time.now) }
+  scope :between, -> (s, e) { where(started_at: s..e) }
 
   def timelines
     ft = (finished_at.presence || (started_at + suspend_duration.seconds + DEFAULT_DURATION))

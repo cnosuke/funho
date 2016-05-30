@@ -1,0 +1,19 @@
+%h4 Today
+.row
+  .col-md-12
+    = render 'shared/pomodoro_list', pomodoros: @today_pomodoros
+
+%table.table.table-condensed
+  %tr
+    %th wday
+    %th pomodoros
+    %th .
+
+  - weeks = %w(日 月 火 水 木 金 土)
+  - today_wday = Time.now.wday
+  - 6.downto(0) do |i|
+    - w = (today_wday + i)%7
+    %tr
+      %td= weeks[w]
+      %td= @recent_pomodoros[w]&.count || 0
+      %td= '=' * (@recent_pomodoros[w]&.count || 0)

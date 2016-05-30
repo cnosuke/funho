@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   get '/hello/revision' => RevisionPlate::App.new
   root 'pages#index'
 
+  get '/stats' => 'pages#stats'
+
   resources :tasks
   resources :pomodoros do
     post :stop
