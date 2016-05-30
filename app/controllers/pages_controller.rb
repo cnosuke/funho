@@ -2,7 +2,7 @@ class PagesController < ApplicationController
   skip_before_action :authenticate, only: %i(index)
 
   def index
-    @tasks = current_user.tasks
+    @tasks = current_user&.tasks
   end
 
   def stats
