@@ -23,13 +23,22 @@ class Pomodoro {
   finish_pomodoro() {
     this.notice("💮💮 Pomodoro finished 💮💮");
     this.write_remainning("💮FINISH💮");
+    this.show_okawari();
     this.play_finish_sound();
     this.sending_stop();
     this.hide_stop_button();
   }
 
+  show_okawari() {
+    document.getElementById("okawari").classList.remove('hidden');
+  }
+
   notice(message) {
     new Notification(message)
+  }
+
+  play_start_sound(){
+    document.getElementById("start_sound").play();
   }
 
   play_finish_sound(){

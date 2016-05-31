@@ -24,15 +24,22 @@
             = pmdr_time(@pomodoro.remain_time)
       .col-md-4
         - if @pomodoro.startable?
+          - opt_klass = 'hidden'
           = link_to 'Start',
                     pomodoro_start_path(@pomodoro),
                     method: :post, id: "main_button",
                     class: 'btn btn-primary btn-lg btn-block'
         - elsif @pomodoro.stoppable?
+          - opt_klass = 'hidden'
           = link_to 'Stop',
                     pomodoro_stop_path(@pomodoro),
                     method: :post, id: "main_button",
                     class: 'btn btn-warning btn-lg btn-block'
+        - else
+          - opt_klass = ''
+
+        = link_to 'おかわり', pomodoros_path(task_id: @task),
+          method: :post, class: "btn btn-success #{opt_klass}", id: 'okawari'
 
 = render 'sounds'
 
@@ -55,4 +62,5 @@
   (function(){
     window.pomodoro = new Pomodoro(#{status_json});
     pomodoro.run();
+    #{@pomodoro.running? ? 'pomodoro.play_start_sound();' : ''}
   })()
