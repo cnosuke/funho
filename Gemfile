@@ -26,6 +26,10 @@ gem 'rails_autolink'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
 
+
+gem 'rails_stdout_logging'
+# https://github.com/heroku/rails_stdout_logging
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
